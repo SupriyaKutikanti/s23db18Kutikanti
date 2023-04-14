@@ -1,0 +1,18 @@
+extends layout
+
+block content
+    h1= title
+    - let results=[{dog_color:"black",dog_breed:"BullDog",dog_price:1200},{dog_color: "white",dog_breed:"Golden",dog_price:1800},{dog_color: "brown",dog_breed:"Poodle",dog_price:3090}]
+    div.container-fluid
+        div.row
+            each item,ind in results
+                div(class='col-sm-2' onclick=`buy(${ind})`) 
+                    p dogcolor  is #{item.dog_color}
+                    p dogbreed  is #{item.dog_breed}
+                    p dogprice: #{item.dog_price}   
+    each ite,index in results 
+        p value at index #{index} is : #{ite.dog_color},#{ite.dog_breed},#{ite.dog_price}
+    script. 
+        function buy(i){
+            alert("You purchased item "+(i+1))
+        }

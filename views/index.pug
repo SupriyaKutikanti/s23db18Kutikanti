@@ -2,5 +2,21 @@ extends layout
 
 block content
   h1= title
-  p Welcome to Supriya is good girl 
-  button(type="button", class="btn btn-info") Press Me 
+  p Never Ever Give Up #{title}
+  button(type="button", class="btn btn-secondary" onclick="doReduce()") press me
+  div(id="reduce") Reduce the value
+  a(href='http://localhost:3000/dog') Link
+  script.
+    let count=20;
+    let change =-1;
+    function doReduce(){
+      console.log("entered fn")
+      count=count+change;
+      change=change-1;
+      document.getElementById('reduce').innerHTML=`Count ${count} with Change ${change}`
+    }
+    
+  
+  
+ 
+  
