@@ -1,0 +1,28 @@
+extends layout
+block content
+    if (toShow == null)
+        h2 No instance to detail
+    else
+        - let dogid = toShow._id
+        - let dog_color = toShow.dog_color
+        - let dog_breed = toShow.dog_breed
+        - let dog_price  = toShow.dog_price
+        - let actionid = "/resource/dog/" + dogid
+            h1= title
+                - let dogid = toShow._id
+                - let dog_color = toShow.dog_color
+                - let dog_breed = toShow.dog_breed
+                - let dog_price  = toShow.dog_price
+                div
+                    div.row
+                        div(class='dogAttr mr-3') dog ID is:
+                        div #{dogid}
+                    div.row
+                        div(class='dogAttr mr-3') dog color is:
+                        div #{dog_color}
+                    div.row
+                        div(class='dogAttr mr-3') dog breed is:
+                        div #{dog_breed}
+                    div.row
+                        div(class='dogAttr mr-3') dog price is:
+                        div #{dog_price}

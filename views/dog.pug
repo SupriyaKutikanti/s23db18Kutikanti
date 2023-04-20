@@ -10,9 +10,3 @@ block content
                     p dogcolor  is #{item.dog_color}
                     p dogbreed  is #{item.dog_breed}
                     p dogprice: #{item.dog_price}   
-    each ite,index in results 
-        p value at index #{index} is : #{ite.dog_color},#{ite.dog_breed},#{ite.dog_price}
-    script. 
-        function buy(i){
-            alert("You purchased item "+(i+1))
-        }

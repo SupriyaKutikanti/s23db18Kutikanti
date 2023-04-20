@@ -1,0 +1,42 @@
+extends layout
+block content
+ if (toShow == null)
+    h2 No instance to update
+ else
+        h1= title
+        - let costumeid = toShow._id
+        - let dogname = toShow.dog_color
+        - let dogbreed = toShow.dog_breed
+        - let dogprice = toShow.dog_price
+        div.row(class='mb-2')
+            div.mr-1 ID is
+            div #{costumeid}
+        - let actionid = "/resource/dog/"+toShow._id
+        form(id='CostumeForm', action=actionid, method='PUT')   
+            div.form-group
+                label.costumeAttr(for='dog_color') dog color
+                input#costume_type(type='text', name='dog_color' value=dogname)
+            div.form-group
+                label.costumeAttr(for='dog_breed') dog breed
+                input#size(type='text', name='dog_breed' value=dogbreed)
+            div.form-group
+                label.costumeAttr(for='dog_price') dog price 
+                input#cost(type='number', name='dog_price' value=dogprice)
+            input(type="submit")
+        script.
+             document.forms['CostumeForm'].addEventListener('submit', (event) => {
+                event.preventDefault();
+                // TODO do something here to show user that form is being submitted
+                fetch(event.target.action, {
+                method: 'PUT',
+                body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+                }).then((resp) => {
+                return resp.json(); // or resp.text() or whatever the server sends
+                }).then((body) => {
+                alert("Update succeded")
+                // TODO handle body
+                }).catch((error) => {
+                // TODO handle error
+                alert("Update failed " + error )
+                });
+             });
