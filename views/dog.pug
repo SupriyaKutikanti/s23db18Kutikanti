@@ -1,12 +1,19 @@
 extends layout
 
 block content
-    h1= title
-    - let results=[{dog_color:"black",dog_breed:"BullDog",dog_price:1200},{dog_color: "white",dog_breed:"Golden",dog_price:1800},{dog_color: "brown",dog_breed:"Poodle",dog_price:3090}]
-    div.container-fluid
-        div.row
-            each item,ind in results
-                div(class='col-sm-2' onclick=`buy(${ind})`) 
-                    p dogcolor  is #{item.dog_color}
-                    p dogbreed  is #{item.dog_breed}
-                    p dogprice: #{item.dog_price}   
+  h1= title
+  - let items = results;
+  div(class="container-fluid")
+    div(class="row")
+      each item,index in items
+        - let destination = `dispatch(\"/dog/update?id=${item._id}\")`
+        div(class="col-sm-2" class="m-1")
+          h3 #{item.dog_color}
+          p #{item.dog_breed}
+          p #{item.dog_price}
+          button.btn( class="btn-primary ml-1", onclick= destination) Update
+  script.
+    function dispatch(path){
+      console.log(path);
+      window.location.href=path;
+    }
